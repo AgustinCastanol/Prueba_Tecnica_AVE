@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./style.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validador de contraceñas</title>
+</head>
+
+<body>
+    <div id="app">
+        <h3>Ingrese un password</h3>
+        <section>
+            <input type="text" id="password" placeholder="Ingrese su password">
+            <div>
+                <button id="btn">Validar</button>
+            </div>
+        </section>
+        <section>
+            <ul id="results">
+                <li id="characters_li">
+                    <span>Debe tener al menos 16 caracteres</span>
+                    <span id="value_characters">✖</span>
+                </li>
+                <li id="upperCase_li">
+                    <span>Debe tener al menos una letra mayúscula</span>
+                    <span id="value_upperCase">✖</span>
+                </li>
+                <li id="lowerCase_li">
+                    <span>Debe tener al menos una letra minúscula</span>
+                    <span id="value_lowercaseLetter">✖</span>
+                </li>
+                <li id="numbers_li">
+                    <span>Debe tener al menos cuatro numeros</span>
+                    <span id="value_number">✖</span>
+                </li>
+                <li id="specialCharacters_li">
+                    <span>Debe tener al menos dos caracter especial</span>
+                    <span id="value_specialCharacter">✖</span>
+                </li>
+                <li id="consecutiveSpecialCharacters_li">
+                    <span>No puede tener dos caracteres especiales iguales en la contraceña</span>
+                    <span id="value_repeatSpecialCharacters">✖</span>
+                </li>
+                <li id="consecutiveCharacters_li">
+                    <span>No puede tener dos caracteres iguales consecutivos</span>
+                    <span id="value_repeatCharacters">✖</span>
+                </li>
+                <li id="spaces_li">
+                    <span>No puede tener espacios en blanco</span>
+                    <span id="value_spaces">✖</span>
+                </li>
+                <li id="zeros_li">
+                    <span>No puede tener ceros</span>
+                    <span id="value_zeros">✖</span>
+                </li>
+
+
+            </ul>
+        </section>
+    </div>
+</body>
+<script src="./index.js"></script>
+
+</html>

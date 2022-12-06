@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./style.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PokeBusqueda</title>
+</head>
+
+<body>
+    <main>
+        <h1>PokeBusqueda</h1>
+        <div id="app">
+            <input list="pokemons" type="text" id="input" placeholder="Ingrese un número o un nombre">
+            <datalist id="pokemons">
+            </datalist>
+            <button id="btn">Buscar</button>
+            <div id="result">
+            </div>
+        </div>
+    </main>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+<script>
+    const input = document.querySelector('input');
+    const URL_BASE = 'https://pokeapi.co/api/v2/';
+    const result = document.getElementById('result');
+    const btn = document.getElementById('btn');
+    var data = [];
+    input.value = ""
+    async function init() {
+        if (data.length == 0) {
+            result.classList.add('disable');
+        };
+        const res = await axios.get(`${URL_BASE}pokemon?limit=1000`)
+        return res.data.results;
+    }
+    init().then(res => {
+        data = res.map(pokemon => pokemon.name);
+        input.addEventListener("keydown", (event) => {
+            autocomplete(event)
+        })
+    })
+    function autocomplete(event) {
+        const value = input.value;
+        const results = data.filter(pokemon => pokemon.startsWith(value.toLowerCase()));
+        const datalist = document.getElementById('pokemons');
+        datalist.innerHTML = `${results.map(pokemon => `<option value="${pokemon}">`).join('')}`
+    }
+    btn.addEventListener('click', () => {
+        const value = input.value;
+        result.classList.remove('disable');
+        if (!isNaN(value)) {
+            searchPokemonById(value);
+        } else {
+            searchPokemonByName(value);
+        }
+
+    })
+    function searchPokemonById(value) {
+        axios.get(`${URL_BASE}pokemon/${value}`)
+            .then(res => {
+                const pokemon = res.data;
+                const div = document.createElement('div');
+                div.innerHTML = `<img src="${pokemon.sprites.front_default}" alt="">
+                <div class="descriptionPokemon">
+                    <p>Nombre: ${pokemon.name}</p>
+                    <p>Id: ${pokemon.id}</p>
+                    <p>Tipo: ${pokemon.types.map(type => type.type.name).join(', ')}</p>
+                    <p>Peso: ${pokemon.weight}</p>
+                    <p>Altura: ${pokemon.height}</p>
+                </div>
+                    `;
+                result.innerHTML = '';
+                result.appendChild(div);
+
+            })
+            .catch(err => {
+                console.log(err);
+                alert('No se encontró el pokemon')
+            })
+    }
+    function searchPokemonByName(value) {
+        axios.get(`${URL_BASE}pokemon/${value}`)
+            .then(res => {
+                const pokemon = res.data;
+                const div = document.createElement('div');
+                div.innerHTML = `<img src="${pokemon.sprites.front_default}" alt="">
+                <div class="descriptionPokemon">
+                    <p>Nombre: ${pokemon.name}</p>
+                    <p>Id: ${pokemon.id}</p>
+                    <p>Tipo: ${pokemon.types.map(type => type.type.name).join(', ')}</p>
+                    <p>Peso: ${pokemon.weight}</p>
+                    <p>Altura: ${pokemon.height}</p>
+                </div>
+                    `;
+                result.innerHTML = '';
+                result.appendChild(div);
+            })
+            .catch(err => {
+                console.log(err);
+                alert('No se encontró el pokemon')
+            })
+    }
+</script>
+
+</html>

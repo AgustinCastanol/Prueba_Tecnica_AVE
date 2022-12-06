@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./style.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problema 5</title>
+</head>
+
+<body>
+    <main>
+        <h1>Problema 5</h1>
+        <p>Crear un programa que permita ingresar un número y muestre su tabla de multiplicar.</p>
+        <div id="app">
+            <input type="number" id="input" placeholder="Ingrese un número">
+            <button id="btn">Calcular</button>
+            <div id="result">
+
+            </div>
+        </div>
+    </main>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+<script>
+    const btn = document.getElementById('btn');
+    const input = document.getElementById('input');
+    const result = document.getElementById('result');
+    const URL = 'https://rickandmortyapi.com/api/character'
+    btn.addEventListener('click', () => {
+        const number = input.value  - 1;
+        if(number < 0) return alert('Ingrese un número mayor a 0');
+        if(number > 15) return alert('Ingrese un número menor a 15');
+        result.innerHTML = '';
+        axios.get(`${URL}`)
+            .then(res => {
+                let data = res.data.results;
+                const ul = document.createElement('ul');
+                for (let i = 0; i <= number; i++) {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<img src="${data[i].image}" alt="">`;
+                    ul.appendChild(li);
+                }
+                result.appendChild(ul);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    })
+</script>
+
+</html>

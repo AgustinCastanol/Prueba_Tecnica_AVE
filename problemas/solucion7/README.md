@@ -7,3 +7,4 @@ Luego para correr el proyecto con la solucion (contenida en la sub carpeta soluc
 ```console
 npm run dev
 ```
+Luego dirigirse a la url marcada en consola

@@ -12,7 +12,7 @@ const values = {
     consecutiveCharacters:document.getElementById('consecutiveCharacters_li'),
     consecutiveSpecialCharacters:document.getElementById('consecutiveSpecialCharacters_li'),
 }
-/*controlar cuando hay un cambio en el input y cambiar el color de la lista */
+
 input.addEventListener('input', () => {
     let validar = validatePassword(input.value)
     validationInputs(validar)

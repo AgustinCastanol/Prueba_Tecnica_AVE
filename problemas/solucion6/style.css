@@ -115,7 +115,6 @@
     padding: 1rem;
     border-radius: 1rem;
     border: 1px solid black;
-    /*make a backgrond like a chroma*/
     background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff62, #0044ff, #4b0082, #ee82ee);
     background-size: 600% 600%;
     -webkit-animation: AnimationName 10s ease infinite;
@@ -142,7 +141,6 @@
     width: 200px;
     height: 200px;
     border-radius: 1rem;
-    /*make a rainbow border*/
     background-color: #f9f9f9;
 }
 .disable{

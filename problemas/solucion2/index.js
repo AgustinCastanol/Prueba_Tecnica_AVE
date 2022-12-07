@@ -1,5 +1,4 @@
-const axios = require('axios')
-const URL ='https:// co/api/v2/'
+
 
 /*item 1 */
 /* Suma total de pokemones por tipo, debe recibir el tipo en string*/
